@@ -1,0 +1,45 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.md-typeset h1 {
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+}
+
+.md-typeset h2 {
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 1em 0 0;
+}
+
+.md-typeset h3 {
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 1em 0 0;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+[dir=ltr] .md-typeset ol, [dir=ltr] .md-typeset ul {
+  margin-left: 0;
+}
+
+.md-typeset ol li, .md-typeset ul li {
+  margin-bottom: 0.125em;
+}
+
+.md-typeset div.arithmatex {
+  margin: -2.5em 0 -2.5em 0;
+}
+
+/* .md-typeset code {
+  background-color: #f9f2f4;
+  color: #c7254e;
+} */

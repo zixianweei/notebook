@@ -1,7 +1,7 @@
 site_name: zixianwei の site
 site_description:
 site_author: zixianwei
-site_url: https://zixianweei.github.io
+site_url: https://zixianweei.github.io/notebook/
 strict: false
 
 copyright: 'Copyright &copy; 2020-2023 zixianwei'
@@ -84,12 +84,22 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
 
 extra_css:
+  - assets/css/custom.css
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
 
 
 nav:
-  - 笔记:
-    - 关于我: index.md
-    - C++多线程编程总结: all-about-concurrent-in-cplusplus.md
-    - C++智能指针: all-about-smart-pointers-in-cplusplus.md
-    - 相机畸变矫正: camera-calibration-using-opencv-cplusplus.md
+  - C/C++:
+    - 目录: cpp/index.md
+    - 自定义startsWith方法: cpp/std-string-starts-with.md
+    - C++多线程编程总结: cpp/all-about-concurrent-in-cplusplus.md
+    - C++智能指针总结: cpp/all-about-smart-pointers-in-cplusplus.md
+  - ML/DL:
+    - 目录: mldl/index.md
+    - KNN: mldl/machine-learning-knn-introdution.md
+  - Linux:
+    - 目录: linux/index.md
+    - 获取进程内存信息: linux/monitor-process-memory-usage.md
+  - 翻译:
+    - 目录: translate/index.md
+    - 使用OpenCV完成相机标定: translate/camera-calibration-using-opencv.md
