@@ -1,14 +1,4 @@
----
-title: C++多线程编程总结
-mathjax: true
-description: ''
-toc: true
-date: 2023-01-18 00:37:09
-tags: [C/C++]
-categories: [blog]
----
-
-本篇记录了学习C++多线程编程的笔记。
+# C++并发编程
 
 使用多线程编程的目的在于：充分利用系统已有的硬件，在同样的时间内完成更多的事情。多线程编程本身就是一个庞大的主题，而C++的历史包袱和能够直接使用系统库的特点又使得这个问题更加的复杂。不过，从C++11开始，只使用C++语言层次提供的接口，也能够较好的完成多线程编程任务了。
 
@@ -95,7 +85,7 @@ int main(int argc, char* argv[]) {
 
 ### std::function
 
-`std::function`可以简单理解为一个函数指针的包装，使得函数能够像参数一样被传递。`std::function`对象可以指向仿函数、lambda函数、其他函数对象等；`std::function`是一个模板类，其类型会根据模板参数的不同而不同：`std::function<void()>`和 `std::function<void(int)>`就两种不同的 `std::function`。
+`std::function`可以简单理解为一个函数指针的包装，使得函数能够像参数一样被传递[^2]。`std::function`对象可以指向仿函数、lambda函数、其他函数对象等；`std::function`是一个模板类，其类型会根据模板参数的不同而不同：`std::function<void()>`和 `std::function<void(int)>`就两种不同的 `std::function`。
 
 此外，如果 `std::function`的类型与需要包装的函数参数并不相同，可以通过 `std::bind`进行绑定。
 
@@ -629,27 +619,26 @@ int main(int argc, char* argv[]) {
 
 ## 参考链接
 
-+ [What is the purpose of std::function and how to use it?](https://stackoverflow.com/questions/20353210/what-is-the-purpose-of-stdfunction-and-how-to-use-it)
-+ [std::function](https://www.cnblogs.com/heartchord/p/5017071.html)
-+ [C++11新特性之std::function](https://blog.csdn.net/wangshubo1989/article/details/49134235)
-+ [Concurrency support library](https://en.cppreference.com/w/cpp/thread)
-+ [C++ 執行緒：promise、future、packaged_task 與 async 的使用方法](https://zh-blog.logan.tw/2021/09/26/cxx-thread-promise-future-packaged-task-async-usage/)
-+ [C++11 多线程 future/promise简介](https://blog.csdn.net/jiange_zh/article/details/51602938)
-+ [通俗讲解c++ future/shared_future](https://blog.csdn.net/qq_38836770/article/details/108827652)
-+ [c++ 如果异步执行是必需的，指定std::launch::async策略](https://zhuanlan.zhihu.com/p/349349488)
-+ [c++多线程（十九） - std::timed_mutex](https://blog.csdn.net/liyazhen2011/article/details/89811564)
-+ [C++11 std::unique_lock与std::lock_guard区别及多线程应用实例](https://www.cnblogs.com/fnlingnzb-learner/p/9542183.html)
-+ [C++11多线程编程(三)——lock_guard和unique_lock](https://zhuanlan.zhihu.com/p/340348726)
-+ [std::unique_lock与std::lock_guard](https://www.jianshu.com/p/7eba4f722e07)
-+ [std::unique_lock](https://stackoverflow.com/questions/20516773/stdunique-lockstdmutex-or-stdlock-guardstdmutex)
-+ [std::lock_guard和std::unique_lock的差别](https://chhy2009.github.io/2018/09/23/c11concurrency/c11concurrency/)
-+ [C++ 11 关键字：thread_local](https://zhuanlan.zhihu.com/p/77585472)
-+ [Storage class specifiers](https://en.cppreference.com/w/cpp/language/storage_duration)
-+ [All about thread-local storage](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage)
-+ [chromium/src/base - Git at Google](https://chromium.googlesource.com/chromium/src/base/)
-+ [QtConcurrent::run()](https://doc.qt.io/qt-6.2/concurrent-changes-qt6.html#qtconcurrent-run)
-+ [taskflow/taskflow - A General-purpose Parallel and Heterogeneous Task Programming System](https://github.com/taskflow/taskflow.git)
-
+[^1]: [What is the purpose of std::function and how to use it?](https://stackoverflow.com/questions/20353210/what-is-the-purpose-of-stdfunction-and-how-to-use-it)
+[^2]: [std::function](https://www.cnblogs.com/heartchord/p/5017071.html)
+[^3]: [C++11新特性之std::function](https://blog.csdn.net/wangshubo1989/article/details/49134235)
+[^4]: [Concurrency support library](https://en.cppreference.com/w/cpp/thread)
+[^5]: [C++ 執行緒：promise、future、packaged_task 與 async 的使用方法](https://zh-blog.logan.tw/2021/09/26/cxx-thread-promise-future-packaged-task-async-usage/)
+[^6]: [C++11 多线程 future/promise简介](https://blog.csdn.net/jiange_zh/article/details/51602938)
+[^7]: [通俗讲解c++ future/shared_future](https://blog.csdn.net/qq_38836770/article/details/108827652)
+[^8]: [c++ 如果异步执行是必需的，指定std::launch::async策略](https://zhuanlan.zhihu.com/p/349349488)
+[^9]: [c++多线程（十九） - std::timed_mutex](https://blog.csdn.net/liyazhen2011/article/details/89811564)
+[^10]: [C++11 std::unique_lock与std::lock_guard区别及多线程应用实例](https://www.cnblogs.com/fnlingnzb-learner/p/9542183.html)
+[^11]: [C++11多线程编程(三)——lock_guard和unique_lock](https://zhuanlan.zhihu.com/p/340348726)
+[^12]: [std::unique_lock与std::lock_guard](https://www.jianshu.com/p/7eba4f722e07)
+[^13]: [std::unique_lock](https://stackoverflow.com/questions/20516773/stdunique-lockstdmutex-or-stdlock-guardstdmutex)
+[^14]: [std::lock_guard和std::unique_lock的差别](https://chhy2009.github.io/2018/09/23/c11concurrency/c11concurrency/)
+[^15]: [C++ 11 关键字：thread_local](https://zhuanlan.zhihu.com/p/77585472)
+[^16]: [Storage class specifiers](https://en.cppreference.com/w/cpp/language/storage_duration)
+[^17]: [All about thread-local storage](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage)
+[^18]: [chromium/src/base - Git at Google](https://chromium.googlesource.com/chromium/src/base/)
+[^19]: [QtConcurrent::run()](https://doc.qt.io/qt-6.2/concurrent-changes-qt6.html#qtconcurrent-run)
+[^20]: [taskflow/taskflow - A General-purpose Parallel and Heterogeneous Task Programming System](https://github.com/taskflow/taskflow.git)[^1]
 ## 更新和TODO
 
 + [X] 多线程基本操作：`std::thread`……
