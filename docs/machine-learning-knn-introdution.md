@@ -144,3 +144,9 @@ comments: true
       return 0;
     }
     ```
+
+!!! note "示例代码第25-27行中`[[nodiscard]]`标记的作用"
+
+    `[[nodiscard]]`是C++17引入的标记符[^1]，可以用于修饰函数的返回值或类/枚举类。当调用者没有获取返回值或类对象时，编译器将会给出警告。注意，类对象的指针或引用不会触发编译器警告。
+
+[^1]: [C++ attribute: nodiscard (since C++17)](https://en.cppreference.com/w/cpp/language/attributes/nodiscard)
