@@ -51,6 +51,9 @@ theme:
     # - navigation.tabs
     - navigation.instant
     - navigation.top
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
   icon:
     annotation: material/leaf-circle
 
