@@ -10,32 +10,47 @@ repo_url: 'https://github.com/zixianweei/notebook'
 
 copyright: 'Copyright &copy; 2020-2023 zixianweei'
 
+nav:
+  - 关于我: index.md
+  - 编程语言: 
+    - C++实现startsWith: std-string-starts-with.md
+    - C++多线程编程基础: basic-usage-of-multithread-programming-in-cplusplus.md
+  - 机器学习:
+    - K近邻算法: machine-learning-knn-introdution.md
+  - 文章翻译:
+    - 相机标定: camera-calibration-using-opencv.md
+  - 其他内容:
+    - 进程内存信息: monitor-process-memory-usage.md
+    - MySQL基础知识: basic-concepts-of-mysql.md
+
 theme:
   name: material
   language: 'zh'
+  custom_dir: custom
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: white
+      primary: indigo
       accent: red
       toggle:
-        icon: material/weather-sunny
+        icon: material/brightness-4
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
-      accent: blue
+      primary: indigo
+      accent: red
       toggle:
-        icon: material/weather-night
+        icon: material/brightness-7
         name: Switch to light mode
-  font:
-    text: 'Helvetica Neue'
-    code: 'Fira Code'
+  # font:
+  #   text: 'Helvetica Neue'
+  #   code: 'Fira Code'
   favicon: 'assets/img/logo.svg'
   logo: 'assets/img/logo.svg'
   features:
-    - navigation.tabs
+    # - navigation.tabs
     - navigation.instant
+    - navigation.top
 
 markdown_extensions:
   - admonition
@@ -90,21 +105,3 @@ extra_javascript:
 extra_css:
   - assets/css/custom.css
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
-
-
-nav:
-  - 目录: index.md
-  - C/C++: 
-    - 主题目录: cpp/index.md
-    - C++实现startsWith: cpp/std-string-starts-with.md
-    - C++并发编程: cpp/all-about-concurrent-in-cplusplus.md
-    # - cpp_smart_pointers: cpp/all-about-smart-pointers-in-cplusplus.md
-  - ML/DL:
-    - 主题目录: mldl/index.md
-    - 机器学习之KNN: mldl/machine-learning-knn-introdution.md
-  - MISC:
-    - 主题目录: misc/index.md
-    - 获取进程内存信息: misc/monitor-process-memory-usage.md
-  - 翻译:
-    - 主题目录: translate/index.md
-    - 相机标定: translate/camera-calibration-using-opencv.md

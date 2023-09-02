@@ -1,12 +1,8 @@
 ---
-title: 获取进程的内存使用情况
-mathjax: true
-description: ''
-toc: true
-date: 2023-01-15 16:34:10
-tags: [Linux]
-categories: blog
+comments: true
 ---
+
+# 进程内存信息
 
 本篇记录了在Linux操作系统中，已知PID时，使用C++获取进程内存使用情况的方法。
 

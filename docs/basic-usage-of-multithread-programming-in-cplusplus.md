@@ -1,4 +1,8 @@
-# C++并发编程
+---
+comments: true
+---
+
+# C++多线程编程基础
 
 使用多线程编程的目的在于：充分利用系统已有的硬件，在同样的时间内完成更多的事情。多线程编程本身就是一个庞大的主题，而C++的历史包袱和能够直接使用系统库的特点又使得这个问题更加的复杂。不过，从C++11开始，只使用C++语言层次提供的接口，也能够较好的完成多线程编程任务了。
 
@@ -140,7 +144,7 @@ if (t1.joinable()) {  // 如果t1还在运行 可join 那就等待t1执行完成
 }
 ```
 
-### std::thread/std::future/std::promise
+### std::future/std::promise
 
 直接使用 `std::thread`完成多线程编程是完全可行的，线程执行体可以十分方便的在创建线程时传递参数。然而，考虑到返回值时，`std::thread`的操作就十分别扭。通常的做法是：在线程启动前约定好一个内存空间用于存储结果，然后将指向该内存空间的指针作为参数传递到 `std::thread`对象中，线程执行完毕后写入结果，最后其他线程使用指针读取结果。多个线程同时读取一个内存区域需要数据保护和同步来保证结果符合预期，在程序区域复杂后，维护难度指数增加。
 
@@ -217,7 +221,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-### std::thread/std::future/std::packaged_task
+### std::future/std::packaged_task
 
 `std::packaged_task`更进一步，将 `std::promise`和线程执行体封装在一起，进一步提升了多线程的编程体验。
 
@@ -617,8 +621,6 @@ int main(int argc, char* argv[]) {
 
 多线程编程中可说的内容很多，本篇也只是描述了一些其中的皮毛。在使用了封装好的线程库之后，开发者将能够把更多的注意力集中于业务逻辑中，但也会遇到生命周期，时序等问题。总的来说，多线程带来的异步行为提高了硬件的利用率。此外，随着C++标准的不断更新，诸如协程、executor、信号量等工具被加入到标准库中，可以使用的工具变多了，脑阔也会更疼了。
 
-## 参考链接
-
 [^1]: [What is the purpose of std::function and how to use it?](https://stackoverflow.com/questions/20353210/what-is-the-purpose-of-stdfunction-and-how-to-use-it)
 [^2]: [std::function](https://www.cnblogs.com/heartchord/p/5017071.html)
 [^3]: [C++11新特性之std::function](https://blog.csdn.net/wangshubo1989/article/details/49134235)
@@ -638,11 +640,4 @@ int main(int argc, char* argv[]) {
 [^17]: [All about thread-local storage](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage)
 [^18]: [chromium/src/base - Git at Google](https://chromium.googlesource.com/chromium/src/base/)
 [^19]: [QtConcurrent::run()](https://doc.qt.io/qt-6.2/concurrent-changes-qt6.html#qtconcurrent-run)
-[^20]: [taskflow/taskflow - A General-purpose Parallel and Heterogeneous Task Programming System](https://github.com/taskflow/taskflow.git)[^1]
-## 更新和TODO
-
-+ [X] 多线程基本操作：`std::thread`……
-+ [ ] 原子量和内存序
-+ [ ] 协程，用户态线程
-+ [ ] 编译器和TLS存储区
-+ [ ] asio和libunifex
+[^20]: [taskflow/taskflow - A General-purpose Parallel and Heterogeneous Task Programming System](https://github.com/taskflow/taskflow.git)

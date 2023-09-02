@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 利用C++的rfind实现startsWith功能
 
 ## startsWith
@@ -56,8 +60,6 @@ size_t rfind(const string& str, size_t pos = npos) const noexcept;
       return 0;
     }
     ```
-
-## 参考链接
 
 [^1]: [Java String startsWith() Method](https://www.w3schools.com/java/ref_string_startswith.asp)
 [^2]: [cplusplus.com - std::string::rfind](https://cplusplus.com/reference/string/string/rfind/)
