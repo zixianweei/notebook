@@ -15,7 +15,7 @@ comments: true
 
 ## 代码实现
 
-```c
+```c linenums="1"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

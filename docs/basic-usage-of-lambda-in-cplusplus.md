@@ -49,7 +49,7 @@ comments: true
 
 C++14标准扩展了lambda表达式中的变量捕获：可以在**捕获列表**中初始化lambda表达式中的变量。这使得那些无法进行拷贝构造的变量可以通过`std::move`的方式捕获到lambda表达式中。
 
-```c++ lambda_capture_cpp11.cpp
+```c++ linenums="1"
 // 下面的代码将无法通过编译std::unique_ptr无法拷贝构造和拷贝赋值
 #include <iostream>
 #include <memory>
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
 // error: call to implicitly-deleted copy constructor of 'std::unique_ptr<int>'
 ```
 
-```c++ lambda_capture_cpp14.cpp
+```c++ linenums="1"
 // C++14中可以通过编译并正常运行
 #include <iostream>
 #include <memory>
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
 
 C++14开始支持lambda表达式的输入参数为`auto`类型。
 
-```c++ generic_lambda.cpp
+```c++ linenums="1"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
 
 Lambda表达式在定义的时候就可以被立即调用。
 
-```c++ immediate_invoke_lambda.cpp
+```c++ linenums="1"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
 
 ## Lambda表达式的原理
 
-```c++ lambda_principle.cpp
+```c++ linenums="1"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -150,7 +150,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-```c++ lambda_principle_by_cppinsight.cpp
+```c++ linenums="1"
 #include <iostream>
 
 int main(int argc, char* argv[]) {

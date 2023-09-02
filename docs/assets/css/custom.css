@@ -30,3 +30,14 @@
   line-height: 1.1;
   margin-bottom: 0.5em;
 }
+
+.md-typeset div.arithmatex {
+  margin-top: -3em;
+  margin-bottom: -3em;
+  font-size: 0.9em;
+}
+
+.arithmatex {
+  font-size: 0.85em;
+  /* align-content: baseline; */
+}

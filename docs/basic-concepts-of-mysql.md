@@ -184,7 +184,7 @@ SQL99语法结构更加清晰，表的连接条件和后来的where条件分离�
 ## 创建表
 
 语句格式：
-```mysql
+```mysql linenums="1"
 create table <tablename> (
     <字段名>,<数据类型>,<约束>
     ...
@@ -210,7 +210,7 @@ create table <tablename> (
 ### 插入数据
 
 语句格式：
-```mysql
+```mysql linenums="1"
 insert into <tablename> (<字段1>,<字段2>,...) values (
     <value1>,<value2>,...
 );
@@ -287,7 +287,7 @@ insert into <tablename> (<字段1>,<字段2>,...) values (
 
 存储引擎描述的是表的存储方式。一个完整的建表语句应该是：
 
-```mysql
+```mysql linenums="1"
 create table <tablename> (
     <字段>,<type>,<constraint>
     ...

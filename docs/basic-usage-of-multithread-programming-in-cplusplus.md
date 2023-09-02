@@ -4,7 +4,9 @@ comments: true
 
 # C++多线程编程基础
 
-使用多线程编程的目的在于：充分利用系统已有的硬件，在同样的时间内完成更多的事情。多线程编程本身就是一个庞大的主题，而C++的历史包袱和能够直接使用系统库的特点又使得这个问题更加的复杂。不过，从C++11开始，只使用C++语言层次提供的接口，也能够较好的完成多线程编程任务了。
+从11标准开始，C++提供了诸如`std::thread`的多线程基础设施。虽然一些抽象层次较低的接口几乎不会出现在落地的项目中，但能够掌握他们的使用是有助于加深对多线程编程的理解的。
+
+本文从**回调函数**，**多线程编程接口**，和**数据同步**三个方面介绍C++多线程编程的一些基础知识和用法。在本文的最后，还会附上一些可用于完成多线程编程的第三方库。
 
 ## 回调函数
 
@@ -14,7 +16,7 @@ comments: true
 
 在理解回调函数时，应当考虑到进程使用事件循环的模型：事件循环可以简单的理解为一个死循环，当事件队列中存在未处理的事件时，循环将会根据类型，指定一个线程池中的线程去处理。不难发现，其实这里的事件就是一个回调函数。下面以一个读文件的操作为例，展示同步和异步两种方式读取文件的过程。
 
-```cpp
+```cpp linenums="1"
 #include <unistd.h>
 #include <cstdio>
 #include <cstdlib>
@@ -74,6 +76,7 @@ int main(int argc, char* argv[]) {
   };
 
   std::thread t(AsyncReadFile, filename, callback);
+  // 阻塞等待
   if (t.joinable()) {
     t.join();
   }
@@ -85,7 +88,9 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-> 这里其实没有考虑诸如：`content`变量的生命周期，`content`是否存在多余的拷贝行为，读文件耗时操作是否会出现时序不一致等问题。实际的开发过程往往要比这个复杂的多。
+!!! note "变量的生命周期" 
+    
+    这里其实没有考虑诸如：`content`变量的生命周期，`content`是否存在多余的拷贝行为，读文件耗时操作是否会出现时序不一致等问题。实际的开发过程往往要比这个复杂的多。
 
 ### std::function
 
@@ -93,7 +98,7 @@ int main(int argc, char* argv[]) {
 
 此外，如果 `std::function`的类型与需要包装的函数参数并不相同，可以通过 `std::bind`进行绑定。
 
-```cpp
+```cpp linenums="1"
 #include <iostream>
 #include <functional>
 
@@ -132,7 +137,7 @@ C++11中提供了多个用于多线程编程的接口，开发者可以更加方
 4. `std::thread`对象对线程实体的持有可以使用 `std::move`转移，转移后原对象就不再表示任何线程实体。
 5. `std::thread`对象构造后，可以 `join`或 `detach`。`join`方法会等待线程执行完成后再继续；`detach`方法则不会等待。
 
-```cpp
+```cpp linenums="1"
 std::thread t1;  // 空线程对象
 std::thread t2([](const std::string& s) {
   std::cout << s << std::endl;
@@ -150,7 +155,7 @@ if (t1.joinable()) {  // 如果t1还在运行 可join 那就等待t1执行完成
 
 为了更加方便在线程之间传递需要的结果，C++11提供了 `std::future`和 `std::promise`接口来完成多个线程的数据传递问题。需要注意的是：这两个接口仅提供了线程传递数据的方式，线程的创建依旧需要 `std::thread`完成。
 
-```cpp
+```cpp linenums="1"
 #include <future>
 #include <iostream>
 #include <numeric>
@@ -182,7 +187,7 @@ int main(int argc, char* argv[]) {
 3. `std::future`和 `std::promise`之间的数据通道只能使用一次，多次使用会抛出异常。
 4. `std::future`在语义上是独享的，没有拷贝操作，但是可以转移；如果想使用共享语义，可以使用 `std::shared_future`。
 
-```cpp
+```cpp linenums="1"
 #include <future>
 #include <iostream>
 #include <numeric>
@@ -225,7 +230,7 @@ int main(int argc, char* argv[]) {
 
 `std::packaged_task`更进一步，将 `std::promise`和线程执行体封装在一起，进一步提升了多线程的编程体验。
 
-```cpp
+```cpp linenums="1"
 #include <future>
 #include <iostream>
 #include <numeric>
@@ -255,7 +260,7 @@ int main(int argc, char* argv[]) {
 
 上面所述的几种多线程编程方式都需要 `std::thread`显式创建线程，线程运行结束后，还需要显式的合并或分离，显得十分繁琐。`std::future`和 `std::async`的组合就将对线程的操作封装起来，免去了显式操作线程的麻烦。
 
-```cpp
+```cpp linenums="1"
 #include <future>
 #include <iostream>
 #include <numeric>
@@ -291,7 +296,7 @@ int main(int argc, char* argv[]) {
 
 > 关于 `deferred`的理解，可以看cppreference的解释：lazy evaluation is performed: the first call to **a non-timed wait function on the std::future** that async returned to the caller will cause the copy of f to be invoked (as an rvalue) with the copies of args... (also passed as rvalues) in the current thread (which does not have to be the thread that originally called std::async)。
 
-```cpp
+```cpp linenums="1"
 #include <chrono>
 #include <future>
 #include <iostream>
@@ -340,7 +345,7 @@ int main() {
 
 当互斥锁被持有时，其他想要进入到临界区的线程就必须等待锁的持有线程释放才能再次竞争锁的所有权。下面给出一个简单的小例子，在不使用互斥锁时，最终的计算结果在多数情况下是不正确的，且每次计算的结果都不太一样。
 
-```cpp
+```cpp linenums="1"
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -379,7 +384,7 @@ int main(int argc, char* argv[]) {
 
 死锁现象是指多个线程因为资源竞争而互相等待的现象。下面就是一个死锁例子。
 
-```cpp
+```cpp linenums="1"
 #include <functional>
 #include <iostream>
 #include <mutex>
@@ -415,7 +420,7 @@ int main(int argc, char* argv[]) {
 
 `std::lock_guard`相对简单，且开销较小；`std::unique_lock`内部可以维护锁的状态，使用更加灵活，也带来了额外的开销，常常与 `std::condition_variable`配合使用。
 
-```cpp
+```cpp linenums="1"
 #include <iostream>
 #include <memory>
 #include <mutex>
@@ -450,7 +455,7 @@ int main(int argc, char* argv[]) {
 
 条件变量是一种底层的同步原语，可以用于多个线程之间的同步操作。条件变量的基原理是：若条件不满足，则让出处理器，进入阻塞状态；如条件满足，则会被唤醒继续处理。条件变量往往需要和互斥锁一同使用达到阻塞等待的效果。
 
-```cpp
+```cpp linenums="1"
 #include <condition_variable>
 #include <functional>
 #include <iostream>
@@ -499,7 +504,7 @@ int main(int argc, char* argv[]) {
 
 在C++中，`thread_local`关键字用于声明线程独有的变量。`thread_local`变量的生命周期与线程的生命周期一致。所以，可以认为 `thread_local`变量是作用范围在线程内部的 `static`变量。
 
-```cpp
+```cpp linenums="1"
 #include <iostream>
 #include <thread>
 
@@ -530,7 +535,7 @@ int main(int argc, char* argv[]) {
 
 base库是chromium中一个相对独立的模块，提供了许多工具类，其中就包括了多线程库。
 
-```cpp
+```cpp linenums="1"
 #include "base/at_exit.h"
 #include "base/command_line.h"
 #include "base/logging.h"
@@ -563,7 +568,7 @@ int main(int argc, char* argv[]) {
 
 QtConcurrent是Qt提供的并发接口。除了 `run`方法，还提供了 `map`，`filter`等比较高级的并发语义。
 
-```cpp
+```cpp linenums="1"
 #include <algorithm>
 #include <iostream>
 #include <numeric>
@@ -591,7 +596,7 @@ int main(int argc, char* argv[]) {
 
 taskflow也是一个比较出名的多线程库，且支持多种硬件设备的加速。与普通的线程库不同，taskflow支持为任务之间添加依赖关系。在建立了任务之间的依赖关系后，事件之间的同步行为就将被确定，taskflow将据此最大化利用硬件。
 
-```cpp
+```cpp linenums="1"
 #include <iostream>
 #include <taskflow/core/executor.hpp>
 #include <taskflow/core/taskflow.hpp>
