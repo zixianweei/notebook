@@ -99,12 +99,12 @@ nav:
     - C++实现startsWith: cpp/std-string-starts-with.md
     - C++并发编程: cpp/all-about-concurrent-in-cplusplus.md
     # - cpp_smart_pointers: cpp/all-about-smart-pointers-in-cplusplus.md
-  # - ML/DL:
-  #   - 主题目录: mldl/index.md
-  #   - mldl_knn: mldl/machine-learning-knn-introdution.md
-  # - MISC:
-  #   - 主题目录: linux/index.md
-  #   - linux_memory_usage: linux/monitor-process-memory-usage.md
+  - ML/DL:
+    - 主题目录: mldl/index.md
+    - 机器学习之KNN: mldl/machine-learning-knn-introdution.md
+  - MISC:
+    - 主题目录: misc/index.md
+    - 获取进程内存信息: misc/monitor-process-memory-usage.md
   - 翻译:
     - 主题目录: translate/index.md
-    - opencv_camera_calibration: translate/camera-calibration-using-opencv.md
+    - 相机标定: translate/camera-calibration-using-opencv.md

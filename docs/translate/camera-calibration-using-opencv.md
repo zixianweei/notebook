@@ -1,22 +1,20 @@
----
-title: 使用OpenCV完成相机标定
-katex: true
-description: ''
-toc: true
-date: 2023-08-01 00:37:09
-tags: [C/C++,OpenCV]
-categories: [blog]
----
+# 翻译：OpenCV相机标定[^1]
 
-## 目标
+## 本文目标
 
-在本节，我们将会学习：
+通过本文，我们将会学习与如何使用OpenCV进行相机标定相关的知识。具体的：
 
-1. 由相机引起的畸变类型；
-2. 如何得到相机的内参矩阵和外参矩阵；
+1. 由相机导致的图像畸变有哪些类型；
+2. 如何通过计算得到相机的内参矩阵和外参矩阵；
 3. 如何利用相机的内参矩阵和外参矩阵对图像进行消畸变操作。
 
-## 基础
+## 基础知识
+
+基于小孔成像模型的相机会为所拍摄的图像引入图像畸变问题。其中，最主要的畸变类型是：径向畸变（radial distortion）和切向畸变（tangential distortion）。
+
+
+
+
 
 一些基于小孔成像原理的相机会给所拍摄的图像引入明显的图像畸变。其中，最主要的畸变类型是：径向畸变(Radial distortion)和切向畸变(Tangential distortion)。
 
@@ -197,3 +195,5 @@ print( "total error: {}".format(mean_error/len(objpoints)) )
 ### 练习
 
 1. 尝试使用圆形阵列进行相机标定。
+
+[^1]: [OpenCV: Camera Calibration](https://docs.opencv.org/4.8.0/dc/dbb/tutorial_py_calibration.html)
