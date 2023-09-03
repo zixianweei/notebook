@@ -186,7 +186,7 @@ cv2.imwrite('calibresult.png', dst)
 
 **使用`cv2.remap()`函数**
 
-这种方式与`cv2.undistort()`不同，他首先使用`cv2.initUndistortRectifyMap()`函数建立了消畸变处理前后图像的映射关系，然后使用`cv2.remap()`对待处理图像应用该映射，最终得到消畸变结果。
+这种方式与`cv2.undistort()`不同：他首先使用`cv2.initUndistortRectifyMap()`函数建立了消畸变处理前后图像的映射关系，然后使用`cv2.remap()`对待处理图像应用该映射，最终得到消畸变结果。
 
 ```python
 # undistort
@@ -197,8 +197,6 @@ x, y, w, h = roi
 dst = dst[y:y+h, x:x+w]
 cv2.imwrite('calibresult.png', dst)
 ```
-
-不管怎样，两种方式都会给出相同的结果。结果如下。
 
 但无论使用哪种方式，都能够得到相同的消畸变结果。本文图1的消畸变结果如图3所示。可以发现：图像中原本向边缘膨胀的线条变直了。在完成相机标定和优化后，可以使用numpy中的`numpy.savez()`或`numpy.savetxt()`方法保存相机内外参数和畸变参数，以便后续读取使用。
 
