@@ -17,6 +17,7 @@ nav:
     - C++实现startsWith: std-string-starts-with.md
     - C++多线程编程基础: basic-usage-of-multithread-programming-in-cplusplus.md
     - C++与lambda函数: basic-usage-of-lambda-in-cplusplus.md
+    - C++中的放置new: placement-new-in-cplusplus.md
   - 机器学习:
     - K近邻算法: machine-learning-knn-introdution.md
   - 文章翻译:
