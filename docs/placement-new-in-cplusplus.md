@@ -8,8 +8,7 @@ comments: true
 
 !!! quote "cppreference.com - new expression[^1]"
 
-    Creates and initializes objects with dynamic storage duration, that is, objects whose lifetime is not necessarily limited by the scope in which they were created.
-    ...
+    Creates and initializes objects with dynamic storage duration, that is, objects whose lifetime is not necessarily limited by the scope in which they were created. <br>
     If placement-params are provided, they are passed to the allocation function as additional arguments. Such allocation functions are known as "placement new", after the standard allocation function `void* operator new(std::size_t, void*)`, which simply returns its second argument unchanged. This is used to construct objects in allcated storage.
 
 ## 使用方式
