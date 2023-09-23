@@ -69,9 +69,12 @@ markdown_extensions:
   - footnotes
   - md_in_html
   - meta
-  - toc:
+  - markdown.extensions.toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
       permalink: ""
-      slugify: !!python/name:pymdownx.slugs.uslugify
+  # - toc:
+  #     permalink: ""
+  #     slugify: !!python/name:pymdownx.slugs.uslugify
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.caret
