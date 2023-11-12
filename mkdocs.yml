@@ -1,3 +1,8 @@
+# setup steps.
+# pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs
+# pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs-material
+# pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs-glightbox
+
 site_name: zixianweei の site
 site_description:
 site_author: zixianweei
