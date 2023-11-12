@@ -61,6 +61,36 @@ int main() {
 }
 ```
 
+## 新的C++17和C++20中的变化
+
+在C++17标准带来了关于`std::string`的视图`std::string_view`。`std::string_view`本质上是不持有字符串对象，仅保留对字符串对象只读引用的类[^4]。`std::string_view`的主要目的是避免`std::string`在使用过程中可能产生的构造或拷贝行为[^5][^6]。对应的，使用`std::string_view`实现`startsWith`的内容如下，与`std::string`几乎没有区别。
+
+```cpp linenums="1"
+inline bool startsWith(std::string_view sv, std::string_view chars) {
+  return sv.rfind(chars, 0) == 0;
+}
+
+inline bool startsWith(std::string_view sv, const char* chars) {
+  return sv.rfind(chars, 0) == 0;
+}
+
+inline bool startsWith(std::string_view sv, char ch) {
+  return sv.rfind(ch, 0) == 0;
+}
+```
+
+而C++20标准则直接为`std::string`和视图`std::string_view`补充了`starts_with()`方法，用于判断字符串或字符串视图是否以特定字符序列开始[^7]。
+
+```cpp linenums="1"
+constexpr bool starts_with( basic_string_view sv ) const noexcept;  // since C++20
+constexpr bool starts_with( CharT ch ) const noexcept;  // since C++20
+constexpr bool starts_with( const CharT* s ) const;  // since C++20
+```
+
 [^1]: [Java String startsWith() Method](https://www.w3schools.com/java/ref_string_startswith.asp)
 [^2]: [cplusplus.com - std::string::rfind](https://cplusplus.com/reference/string/string/rfind/)
 [^3]: [How do I check if a C++ std::string starts with a certain string, and convert a substring to an int?](https://stackoverflow.com/questions/1878001/how-do-i-check-if-a-c-stdstring-starts-with-a-certain-string-and-convert-a)
+[^4]: [Microsoft - <string_view>](https://learn.microsoft.com/zh-cn/cpp/standard-library/string-view?view=msvc-170)
+[^5]: [C++17 string_view的原理](https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/)
+[^6]: [C++17 特性:使用 std::string_view 时小心踩坑](https://uint128.com/2022/02/16/C-17-%E7%89%B9%E6%80%A7-%E4%BD%BF%E7%94%A8-std-string-view-%E6%97%B6%E5%B0%8F%E5%BF%83%E8%B8%A9%E5%9D%91/)
+[^7]: [cppreference.com - std::basic_string_view<CharT,Traits>::starts_with](https://en.cppreference.com/w/cpp/string/basic_string_view/starts_with)
